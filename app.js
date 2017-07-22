@@ -5,13 +5,17 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const helmet = require('helmet');
 
 const index = require('./routes/index');
 
 const app = express();
 
+app.use(helmet());
+
 // connect to mongodb
-mongoose.connect('localhost:27017/startshopDB')
+mongoose.connect('localhost:27017/startshopDB');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,6 +26,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({ secret: '2FjNWBV6AOgoCaDY04IcdyUwSLsqhE3Q', resave: false, saveUninitialized: false }))
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
