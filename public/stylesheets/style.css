@@ -1,0 +1,11 @@
+.thumbnail {
+    text-align: center;
+}
+
+.thumbnail>img {
+    height: 350px;
+}
+
+.description {
+    height: 150px;
+}

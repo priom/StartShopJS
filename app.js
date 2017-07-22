@@ -4,10 +4,14 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const index = require('./routes/index');
 
 const app = express();
+
+// connect to mongodb
+mongoose.connect('localhost:27017/startshopDB')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
