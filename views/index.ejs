@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <% include partials/header %>
-  </head>
-  <body>
-    <% include partials/navbar %>
+<% include partials/_header %>
 
     <div class="container">
-        <h1><center><%= title %></center></h1>
-        <p><center>Welcome to <%= title %></center></p>
+        <h1 class="text-center"><%= title %></h1>
+        <p class="text-center">Welcome to <%= title %></p>
 
         <% include shop/products %>
     </div>
 
-    <% include partials/footer %>
-  </body>
-</html>
+<% include partials/_footer %>
+
