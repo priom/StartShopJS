@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/product');
 const csrf = require('csurf');
+const passport = require('passport');
+
+const Product = require('../models/product');
 
 const csrfProtect = csrf();
 
 router.use(csrfProtect);
 
-const title = 'Linkin Store'
+const title = 'Linkin Store';
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -17,11 +19,18 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/user/register', (req, res, next) => {
-    res.render('user/register', { title: title, csrfToken: req.csrfToken() });
+    const messages = req.flash('error');
+    res.render('user/register', { title: title, csrfToken: req.csrfToken(), messages: messages });
 });
 
-router.post('/user/register', (req, res, next) => {
-    res.redirect('/');
+router.post('/user/register', passport.authenticate('local.register', {
+    successRedirect: '/user/profile',
+    failureRedirect: '/user/register',
+    failureFlash: true
+}));
+
+router.get('/user/profile', (req, res, next) => {
+    res.render('user/profile', {title: title});
 });
 
 module.exports = router;
