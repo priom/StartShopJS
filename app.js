@@ -12,6 +12,7 @@ const flash = require('connect-flash');
 const validator = require('express-validator');
 
 const index = require('./routes/index');
+const user = require('./routes/userRoute');
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
