@@ -14,13 +14,13 @@ const title = 'Linkin Store';
 /* GET home page. */
 router.get('/', (req, res, next) => {
   Product.find((err, product) => {
-      res.render('index', { title: title, products: product });
+      res.render('index', { title, products: product });
   });
 });
 
 router.get('/user/register', (req, res, next) => {
     const messages = req.flash('error');
-    res.render('user/register', { title: title, csrfToken: req.csrfToken(), messages: messages });
+    res.render('user/register', { title, csrfToken: req.csrfToken(), messages });
 });
 
 router.post('/user/register', passport.authenticate('local.register', {
@@ -30,7 +30,18 @@ router.post('/user/register', passport.authenticate('local.register', {
 }));
 
 router.get('/user/profile', (req, res, next) => {
-    res.render('user/profile', {title: title});
+    res.render('user/profile', {title});
 });
+
+router.get('/user/login', (req, res, next) => {
+    const messages = req.flash('error');
+    res.render('user/login', { title, csrfToken: req.csrfToken(), messages });
+});
+
+router.post('/user/login', passport.authenticate('local.login', {
+    successRedirect: '/user/profile',
+    failureRedirect: '/user/login',
+    failureFlash: true
+}));
 
 module.exports = router;

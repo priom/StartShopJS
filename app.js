@@ -18,7 +18,9 @@ const app = express();
 app.use(helmet());
 
 // connect to mongodb
-mongoose.connect('localhost:27017/startshopDB');
+mongoose.connect('mongodb://localhost/startshopDB', {
+    useMongoClient: true
+});
 
 require('./config/passport');
 

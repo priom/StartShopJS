@@ -1,7 +1,9 @@
 const Product = require('../models/product');
 const mongoose = require('mongoose');
 
-mongoose.connect('localhost:27017/startshopDB')
+mongoose.connect('mongodb://localhost/startshopDB', {
+    useMongoClient: true
+});
 
 const products = [
     new Product({
