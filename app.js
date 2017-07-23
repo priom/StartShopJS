@@ -9,6 +9,7 @@ const session = require('express-session');
 const helmet = require('helmet');
 const passport = require('passport');
 const flash = require('connect-flash');
+const validator = require('express-validator');
 
 const index = require('./routes/index');
 
@@ -29,10 +30,9 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(validator());
 app.use(cookieParser());
-
 app.use(session({ secret: '2FjNWBV6AOgoCaDY04IcdyUwSLsqhE3Q', resave: false, saveUninitialized: false }))
-
 app.use(flash());
 
 app.use(passport.initialize());
