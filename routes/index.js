@@ -7,8 +7,8 @@ const title = 'Linkin Store';
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  Product.find().sort({year: 1}).exec((err, product) => {
-      res.render('index', { title, products: product });
+  Product.find().sort({year: 1}).exec((err, products) => {
+      res.render('index', { title, products });
   });
 });
 

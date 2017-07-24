@@ -35,9 +35,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(validator());
 app.use(cookieParser());
+
+// setting csrf token for session
 app.use(session({ secret: '2FjNWBV6AOgoCaDY04IcdyUwSLsqhE3Q', resave: false, saveUninitialized: false }))
+
 app.use(flash());
 
+// passport config
 app.use(passport.initialize());
 app.use(passport.session());
 
