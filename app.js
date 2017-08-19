@@ -19,7 +19,8 @@ const app = express();
 app.use(helmet());
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost/startshopDB', {
+//mongoose.connect('mongodb://localhost/startshopDB', {
+mongoose.connect('mongodb://startshop:startshop@ds149433.mlab.com:49433/startshop', {
     useMongoClient: true
 });
 
